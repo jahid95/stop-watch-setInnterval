@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        body{
+            text-align: center;
+        }
+
+        button{
+            background-color: tomato;
+            color: white;
+            padding: 10px 20px;
+            border: 0;
+
+border-radius: 10px;        }
+
+#display{
+    background-color: orange;
+    padding: 10px 20px;
+    width: 180px;
+    border-radius: 10px;
+    margin-bottom: 15px;
+    margin: 10px auto;
+    font-size: 40px;
+    color: white;
+
+}
+    </style>
+</head>
+
+<body>
+    <div id="display">0</div>
+    <button id="start">Start</button>
+    <button id="stop">Stop</button>
+    <button id="reset">Reset</button>
+
+
+    <script>
+        let intervalId;
+        let num = 0;
+        const btnStart = document.getElementById('start');
+        const btnStop = document.getElementById('stop');
+        const btnReset = document.getElementById('reset');
+        
+
+        function clock() {
+            document.getElementById('display').innerText = num++;
+        }
+        document.getElementById('start').addEventListener('click', function () {
+
+            intervalId = setInterval(clock,1000);
+            btnStart.setAttribute('disabled', true);
+            btnStart.style.backgroundColor = 'gray';
+            btnStop.removeAttribute('disabled');
+            btnStop.style.backgroundColor = 'tomato'
+
+        })
+        document.getElementById('stop').addEventListener('click', function () {
+            clearInterval(intervalId)
+            
+            btnStop.setAttribute('disabled', true);
+            btnStart.removeAttribute('disabled');
+            btnStop.style.backgroundColor = 'gray';
+            btnStart.style.backgroundColor = 'tomato'
+        
+        })
+        document.getElementById('reset').addEventListener('click', function () {
+            num = 0;           
+            document.getElementById('display').innerText = num;
+            btnReset.setAttribute('disabled', true);
+            btnReset.style.backgroundColor = 'gray';
+            btnStart.removeAttribute('disabled');
+            btnStart.style.backgroundColor = 'tomato';
+            btnStop.style.backgroundColor = 'tomato'
+            btnStop.removeAttribute('disabled');
+        })
+    </script>
+</body>
+
+</html>
